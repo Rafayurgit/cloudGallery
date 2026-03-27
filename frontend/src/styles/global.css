@@ -18,6 +18,11 @@
   --shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -83,10 +88,13 @@ body {
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 0.92rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
 .nav-dock__links a:hover {
   border-color: var(--line);
+  transform: translateY(-1px);
 }
 
 .theme-toggle {
@@ -99,6 +107,12 @@ body {
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--text);
 }
 
 .theme-toggle__track {
@@ -182,6 +196,15 @@ h1 {
   background: transparent;
   color: var(--text);
   font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .btn--solid {
@@ -189,9 +212,141 @@ h1 {
   color: var(--surface);
 }
 
+.btn--ghost {
+  background: transparent;
+}
+
+.btn:hover {
+  border-color: var(--text);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
 .section-block {
   display: grid;
   gap: 14px;
+}
+
+.auth-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.auth-panel__switch {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
+}
+
+.chip--active {
+  background: var(--text);
+  color: var(--surface);
+}
+
+.chip:hover {
+  border-color: var(--text);
+  transform: translateY(-1px);
+}
+
+.auth-form {
+  display: grid;
+  gap: 10px;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.auth-form input {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.dashboard-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dashboard-head__actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meta-copy {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.upload-row {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.upload-row input[type="file"] {
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  background: transparent;
+  color: var(--text);
+}
+
+.status-line {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.status-line--error {
+  color: #ca2b2b;
+}
+
+.file-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.file-list__item {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.file-list__item strong {
+  font-size: 0.96rem;
 }
 
 .section-head h2 {
@@ -269,5 +424,10 @@ h1 {
     flex: 1;
     text-align: center;
     border-color: var(--line);
+  }
+
+  .file-list__item {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
