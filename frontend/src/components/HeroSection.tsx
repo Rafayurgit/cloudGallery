@@ -7,12 +7,12 @@ const HeroSection = () => {
         Connect multiple providers, browse everything from one dashboard, and stay in control with secure tenant-first architecture.
       </p>
       <div className="hero__actions">
-        <button type="button" className="btn btn--solid">
+        <a className="btn btn--solid" href="#flow">
           Start Free
-        </button>
-        <button type="button" className="btn btn--ghost">
+        </a>
+        <a className="btn btn--ghost" href="#features">
           Explore Demo
-        </button>
+        </a>
       </div>
     </section>
   );
