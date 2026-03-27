@@ -42,7 +42,32 @@ const handleGoogleCallback = async (req, res, next) => {
       String(decoded.tenantId),
       String(code)
     );
-    return sendSuccess(res, {}, "Google provider connected");
+
+    // OAuth popups expect a simple HTML response that can notify the opener window
+    // and close itself cleanly.
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    return res.send(`<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Connected</title>
+  </head>
+  <body>
+    <script>
+      (function () {
+        var payload = { type: "oauth-connected", provider: "google" };
+        try {
+          if (window.opener && !window.opener.closed) {
+            window.opener.postMessage(payload, "*");
+          }
+        } catch (e) {}
+        try { window.close(); } catch (e) {}
+        document.body.innerHTML = "<p>Connected. You can close this window.</p>";
+      })();
+    </script>
+  </body>
+</html>`);
   } catch (error) {
     next(error);
   }
